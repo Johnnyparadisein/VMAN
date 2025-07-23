@@ -436,7 +436,7 @@ body {
     width: 100%;
     height: 100vh;
     height: 100dvh; /* Dynamic viewport height */
-    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    padding: max(5px, env(safe-area-inset-top)) max(5px, env(safe-area-inset-right)) max(5px, env(safe-area-inset-bottom)) max(5px, env(safe-area-inset-left));
     box-sizing: border-box;
 }
 
@@ -512,16 +512,16 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-/* Main Content - iPhone Optimized */
+/* Main Content - Mobile Optimized */
 .main-content {
     display: flex;
     flex-direction: column;
     flex: 1;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
     padding: 5px;
-    max-height: calc(100dvh - 120px);
+    max-height: calc(100dvh - 140px);
     overflow: hidden;
 }
 
@@ -550,13 +550,13 @@ body {
     flex: 0 0 auto;
 }
 
-/* Game Canvas - iPhone Optimized */
+/* Game Canvas - Mobile Optimized */
 canvas {
     background: #000;
-    border: 3px solid #b4d984;
-    border-radius: 8px;
-    width: min(85vw, calc(100dvh - 300px), 400px);
-    height: min(85vw, calc(100dvh - 300px), 400px);
+    border: 2px solid #b4d984;
+    border-radius: 6px;
+    width: min(75vw, calc(100dvh - 400px), 300px);
+    height: min(75vw, calc(100dvh - 400px), 300px);
     image-rendering: -webkit-optimize-contrast;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
@@ -752,12 +752,12 @@ canvas {
 
 /* Mobile Controls - Optimized */
 #mobile-controls {
-    margin: 10px auto 5px;
+    margin: 8px auto 5px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 8px;
-    width: 180px;
+    gap: 6px;
+    width: min(180px, 80vw);
 }
 
 #mobile-controls button {
@@ -848,82 +848,158 @@ canvas {
 /* iPhone 13 Specific Optimizations */
 @media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
     /* iPhone 13 & iPhone 13 Pro */
-    .game-container {
-        padding: max(15px, env(safe-area-inset-top)) 15px max(15px, env(safe-area-inset-bottom)) 15px;
-    }
-    
     canvas {
-        width: min(80vw, calc(100dvh - 280px), 380px);
-        height: min(80vw, calc(100dvh - 280px), 380px);
-    }
-    
-    .top-section {
-        height: 45px;
-        padding: 8px;
-    }
-    
-    .game-title {
-        font-size: 24px;
-    }
-    
-    .bottle-wrapper {
-        width: 40px;
-        height: 100px;
-    }
-    
-    .heart img {
-        width: 22px;
-        height: 22px;
-    }
-    
-    .score-icon img {
-        width: 26px;
-        height: 26px;
-    }
-    
-    #mobile-controls {
-        width: 170px;
-        gap: 6px;
-        margin: 8px auto 5px;
-    }
-    
-    #mobile-controls button {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-/* iPhone 13 Pro Max */
-@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-    canvas {
-        width: min(78vw, calc(100dvh - 270px), 400px);
-        height: min(78vw, calc(100dvh - 270px), 400px);
-    }
-}
-
-/* iPhone 13 Mini */
-@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
-    canvas {
-        width: min(82vw, calc(100dvh - 300px), 350px);
-        height: min(82vw, calc(100dvh - 300px), 350px);
+        width: min(70vw, calc(100dvh - 420px), 280px);
+        height: min(70vw, calc(100dvh - 420px), 280px);
     }
     
     .top-section {
         height: 40px;
+        padding: 5px;
     }
     
     .game-title {
         font-size: 22px;
     }
     
+    .bottle-wrapper {
+        width: 35px;
+        height: 90px;
+    }
+    
+    .heart img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .score-icon img {
+        width: 24px;
+        height: 24px;
+    }
+    
     #mobile-controls {
         width: 160px;
         gap: 5px;
+        margin: 5px auto 5px;
     }
     
     #mobile-controls button {
         padding: 8px;
         font-size: 14px;
+    }
+}
+
+/* iPhone 13 Pro Max */
+@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+    canvas {
+        width: min(70vw, calc(100dvh - 450px), 300px);
+        height: min(70vw, calc(100dvh - 450px), 300px);
+    }
+}
+
+/* iPhone 13 Mini */
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    canvas {
+        width: min(68vw, calc(100dvh - 400px), 260px);
+        height: min(68vw, calc(100dvh - 400px), 260px);
+    }
+    
+    .top-section {
+        height: 35px;
+    }
+    
+    .game-title {
+        font-size: 20px;
+    }
+    
+    .bottle-wrapper {
+        width: 30px;
+        height: 80px;
+    }
+    
+    #mobile-controls {
+        width: 150px;
+        gap: 4px;
+    }
+    
+    #mobile-controls button {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+/* Small Mobile Devices */
+@media only screen and (max-height: 700px) {
+    canvas {
+        width: min(65vw, calc(100dvh - 350px), 250px) !important;
+        height: min(65vw, calc(100dvh - 350px), 250px) !important;
+    }
+    
+    .main-content {
+        gap: 4px;
+        max-height: calc(100dvh - 120px);
+    }
+    
+    .top-section {
+        height: 35px;
+        padding: 3px;
+    }
+    
+    .game-title {
+        font-size: 18px;
+    }
+    
+    #mobile-controls {
+        width: min(150px, 75vw);
+        gap: 4px;
+        margin: 5px auto 3px;
+    }
+    
+    #mobile-controls button {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Mobile Devices */
+@media only screen and (max-height: 600px) {
+    canvas {
+        width: min(60vw, calc(100dvh - 300px), 200px) !important;
+        height: min(60vw, calc(100dvh - 300px), 200px) !important;
+        border-width: 1px;
+    }
+    
+    .bottle-wrapper {
+        width: 25px;
+        height: 70px;
+    }
+    
+    .heart img {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .score-icon img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .top-section {
+        height: 30px;
+    }
+    
+    .game-title {
+        font-size: 16px;
+    }
+    
+    #mobile-controls {
+        width: min(140px, 70vw);
+        gap: 3px;
+    }
+    
+    #mobile-controls button {
+        padding: 5px;
+        font-size: 11px;
     }
 }
 
