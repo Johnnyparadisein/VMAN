@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.01 25.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #b4d984;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <polygon class="cls-1" points="4.21 .53 3.84 1.92 .76 4.99 1.92 21.16 4.58 23.88 21.16 23.09 24.04 20.2 23.07 3.84 19.24 0 4.21 .53"/>
+      <g>
+        <rect x="23.07" y="19.24" width="1.94" height="1.92"/>
+        <rect x="23.07" y="17.32" width="1.94" height="1.92"/>
+        <rect x="23.07" y="15.38" width="1.94" height="1.94"/>
+        <rect x="23.07" y="13.46" width="1.94" height="1.92"/>
+        <rect x="23.07" y="11.55" width="1.94" height="1.92"/>
+        <rect x="23.07" y="9.61" width="1.94" height="1.94"/>
+        <rect x="23.07" y="7.69" width="1.94" height="1.92"/>
+        <rect x="23.07" y="5.77" width="1.94" height="1.92"/>
+        <rect x="23.07" y="3.84" width="1.94" height="1.94"/>
+        <rect x="21.16" y="21.16" width="1.92" height="1.94"/>
+        <rect x="21.16" y="1.92" width="1.92" height="1.92"/>
+        <rect x="19.24" y="23.09" width="1.92" height="1.92"/>
+        <rect x="19.24" width="1.92" height="1.92"/>
+        <rect x="17.3" y="23.09" width="1.94" height="1.92"/>
+        <rect x="17.3" width="1.94" height="1.92"/>
+        <rect x="15.38" y="23.09" width="1.92" height="1.92"/>
+        <rect x="15.38" width="1.92" height="1.92"/>
+        <rect x="13.46" y="23.09" width="1.92" height="1.92"/>
+        <rect x="13.46" width="1.92" height="1.92"/>
+        <rect x="11.53" y="23.09" width="1.94" height="1.92"/>
+        <rect x="11.53" width="1.94" height="1.92"/>
+        <rect x="9.61" y="23.09" width="1.92" height="1.92"/>
+        <rect x="9.61" width="1.92" height="1.92"/>
+        <rect x="7.69" y="23.09" width="1.92" height="1.92"/>
+        <rect x="7.69" width="1.92" height="1.92"/>
+        <rect x="5.77" y="23.09" width="1.92" height="1.92"/>
+        <rect x="5.77" width="1.92" height="1.92"/>
+        <rect x="3.84" y="23.09" width="1.94" height="1.92"/>
+        <rect x="3.84" width="1.94" height="1.92"/>
+        <rect x="1.92" y="21.16" width="1.92" height="1.94"/>
+        <rect x="1.92" y="1.92" width="1.92" height="1.92"/>
+        <rect y="19.24" width="1.92" height="1.92"/>
+        <rect y="17.32" width="1.92" height="1.92"/>
+        <rect y="15.38" width="1.92" height="1.94"/>
+        <rect y="13.46" width="1.92" height="1.92"/>
+        <rect y="11.55" width="1.92" height="1.92"/>
+        <rect y="9.61" width="1.92" height="1.94"/>
+        <rect y="7.69" width="1.92" height="1.92"/>
+        <rect y="5.77" width="1.92" height="1.92"/>
+        <rect y="3.84" width="1.92" height="1.94"/>
+      </g>
+      <g>
+        <rect x="17.33" y="14.56" width="1.37" height="1.39"/>
+        <rect x="17.33" y="13.19" width="1.37" height="1.37"/>
+        <rect x="17.33" y="11.82" width="1.37" height="1.37"/>
+        <rect x="15.94" y="15.95" width="1.39" height="1.37"/>
+        <rect x="15.94" y="13.19" width="1.39" height="1.37"/>
+        <rect x="15.94" y="11.82" width="1.39" height="1.37"/>
+        <rect x="15.94" y="10.43" width="1.39" height="1.39"/>
+        <rect x="14.57" y="13.19" width="1.37" height="1.37"/>
+        <rect x="14.57" y="11.82" width="1.37" height="1.37"/>
+        <rect x="14.57" y="10.43" width="1.37" height="1.39"/>
+        <rect x="13.2" y="13.19" width="1.37" height="1.37"/>
+        <rect x="13.2" y="11.82" width="1.37" height="1.37"/>
+        <rect x="13.2" y="10.43" width="1.37" height="1.39"/>
+        <rect x="11.81" y="13.19" width="1.39" height="1.37"/>
+        <rect x="11.81" y="11.82" width="1.39" height="1.37"/>
+        <rect x="11.81" y="10.43" width="1.39" height="1.39"/>
+        <rect x="10.44" y="15.95" width="1.37" height="1.37"/>
+        <rect x="10.44" y="14.56" width="1.37" height="1.39"/>
+        <rect x="10.44" y="13.19" width="1.37" height="1.37"/>
+        <rect x="10.44" y="11.82" width="1.37" height="1.37"/>
+        <rect x="10.44" y="10.43" width="1.37" height="1.39"/>
+        <rect x="10.44" y="9.06" width="1.37" height="1.37"/>
+        <rect x="10.44" y="7.69" width="1.37" height="1.37"/>
+        <rect x="9.07" y="14.56" width="1.37" height="1.39"/>
+        <rect x="9.07" y="13.19" width="1.37" height="1.37"/>
+        <rect x="9.07" y="11.82" width="1.37" height="1.37"/>
+        <rect x="9.07" y="10.43" width="1.37" height="1.39"/>
+        <rect x="9.07" y="9.06" width="1.37" height="1.37"/>
+        <rect x="7.7" y="13.19" width="1.37" height="1.37"/>
+        <rect x="7.7" y="11.82" width="1.37" height="1.37"/>
+        <rect x="7.7" y="10.43" width="1.37" height="1.39"/>
+        <rect x="6.31" y="11.82" width="1.39" height="1.37"/>
+      </g>
+    </g>
+  </g>
+</svg>

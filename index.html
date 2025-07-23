@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    <title>V:MAN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Game Container -->
+    <div class="game-container">
+        <!-- Top UI Section -->
+        <div class="top-section">
+            <!-- Top Left Controls -->
+            <div class="top-left-controls">
+                <button id="back-btn" class="control-button">
+                    <img src="assets/back button.svg" alt="Back">
+                </button>
+                <button id="pause-btn" class="control-button">
+                    <img src="assets/Pause.svg" alt="Pause">
+                </button>
+                <button id="audio-btn" class="control-button">
+                    <img src="assets/Audio off.svg" alt="Audio">
+                </button>
+            </div>
+            
+            <!-- Top Center Title -->
+            <div class="top-center-title">
+                <h1 class="game-title">V:<span class="title-man">MAN</span></h1>
+            </div>
+            
+            <!-- Top Right Logo -->
+            <div class="top-right-logo">
+                <img src="assets/Logo.svg" alt="Vi Logo" class="vi-logo">
+            </div>
+        </div>
+
+        <!-- Main Game Content -->
+        <div class="main-content">
+            <!-- Top UI Panels -->
+            <div class="top-ui-panels">
+                <!-- Left Side UI -->
+                <div class="left-side-ui">
+                    <!-- Likani Bottle -->
+                    <div class="bottle-container">
+                        <div class="bottle-wrapper">
+                            <img src="assets/likani bottle.svg" alt="Likani Bottle" class="bottle-base">
+                            <div class="bottle-water" id="bottle-water"></div>
+                        </div>
+                        <div class="bottle-progress">
+                            <span id="water-percentage">0%</span>
+                        </div>
+                        <div class="bottle-label">ლიკანი</div>
+                    </div>
+                </div>
+
+                <!-- Right Side UI -->
+                <div class="right-side-ui">
+                    <!-- Health Display -->
+                    <div class="health-container">
+                        <div class="health-label">ნაკლები</div>
+                        <div class="health-display">
+                            <div class="heart" id="heart1">
+                                <img src="assets/full heart.svg" alt="Heart 1">
+                            </div>
+                            <div class="heart" id="heart2">
+                                <img src="assets/full heart.svg" alt="Heart 2">
+                            </div>
+                            <div class="heart" id="heart3">
+                                <img src="assets/full heart.svg" alt="Heart 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Score Display -->
+                    <div class="score-container">
+                        <div class="score-icon">
+                            <img src="assets/debuff.svg" alt="Score Icon">
+                        </div>
+                        <div class="score-label">ბიზნეს ბიზნე</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Area -->
+            <div class="game-area">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Bottom Status Bar -->
+        <div class="bottom-status">
+            <div class="status-left">
+                <span class="status-label">ქართული:</span>
+                <span class="status-value" id="score-value">324</span>
+            </div>
+            <div class="status-right">
+                <span class="status-label">სიცოცხლე:</span>
+                <div class="status-hearts">
+                    <img src="assets/full heart.svg" alt="Heart" class="status-heart">
+                    <img src="assets/full heart.svg" alt="Heart" class="status-heart">
+                    <img src="assets/empty heart.svg" alt="Heart" class="status-heart">
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls">
+            <button id="up">↑</button>
+            <button id="left">←</button>
+            <button id="right">→</button>
+            <button id="down">↓</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html> 

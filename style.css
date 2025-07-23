@@ -1,0 +1,539 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #2E86C1 0%, #5DADE2 50%, #85C1E9 100%);
+    color: #fff;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+}
+
+/* Top Section */
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 70px;
+    position: relative;
+}
+
+.top-left-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-button {
+    background: #b4d984;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.control-button img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.top-center-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.game-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #000;
+}
+
+.title-man {
+    color: #b4d984;
+}
+
+.top-right-logo {
+    display: flex;
+    align-items: center;
+}
+
+.vi-logo {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Main Content - Mobile First */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+    max-height: calc(100vh - 140px);
+}
+
+.top-ui-panels {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.left-side-ui, .right-side-ui {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    justify-content: center;
+}
+
+.game-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+/* Game Canvas - Mobile Optimized */
+canvas {
+    background: #000;
+    border: 3px solid #b4d984;
+    border-radius: 8px;
+    width: min(90vw, 55vh);
+    height: min(90vw, 55vh);
+    max-width: 450px;
+    max-height: 450px;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Bottle Container - Mobile Optimized */
+.bottle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(135, 206, 250, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+}
+
+.bottle-wrapper {
+    position: relative;
+    width: 60px;
+    height: 140px;
+    margin-bottom: 10px;
+}
+
+.bottle-base {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.bottle-water {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 0%;
+    background: linear-gradient(180deg, 
+        rgba(67, 194, 181, 0.95) 0%, 
+        rgba(67, 194, 181, 0.8) 30%,
+        rgba(67, 194, 181, 0.9) 70%, 
+        rgba(67, 194, 181, 0.95) 100%
+    );
+    border-radius: 0 0 6px 6px;
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        inset 0 0 15px rgba(67, 194, 181, 0.6),
+        0 0 20px rgba(67, 194, 181, 0.4);
+    z-index: 1;
+}
+
+.bottle-progress {
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.bottle-label {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Health Container - Mobile Optimized */
+.health-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(135, 206, 250, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+}
+
+.health-label {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.health-display {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.heart img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.heart.damaged {
+    animation: heartDamage 0.6s ease-in-out;
+}
+
+@keyframes heartDamage {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.4) rotate(-5deg); }
+    75% { transform: scale(1.4) rotate(5deg); }
+}
+
+/* Score Container - Mobile Optimized */
+.score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(135, 206, 250, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    min-width: 120px;
+}
+
+.score-icon img {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    margin-bottom: 8px;
+}
+
+.score-label {
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Bottom Status Bar */
+.bottom-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #b4d984;
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin: 10px 0 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.status-left, .status-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+}
+
+.status-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+}
+
+.status-hearts {
+    display: flex;
+    gap: 4px;
+}
+
+.status-heart {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile Controls - Optimized */
+#mobile-controls {
+    margin: 10px auto 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    width: 180px;
+}
+
+#mobile-controls button {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #b4d984;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+}
+
+#mobile-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#mobile-controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#down {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Mobile Optimizations */
+.bottle-wrapper {
+    width: 45px;
+    height: 110px;
+}
+
+.health-display {
+    flex-direction: row;
+    gap: 6px;
+}
+
+.heart img {
+    width: 24px;
+    height: 24px;
+}
+
+.score-icon img {
+    width: 28px;
+    height: 28px;
+}
+
+.game-title {
+    font-size: 28px;
+}
+
+.control-button img {
+    width: 18px;
+    height: 18px;
+}
+
+.vi-logo {
+    height: 32px;
+}
+
+.top-section {
+    height: 50px;
+    padding: 5px;
+}
+
+.bottom-status {
+    padding: 8px 15px;
+    margin: 5px 0 0;
+}
+
+.status-label, .status-value {
+    font-size: 14px;
+}
+
+.status-heart {
+    width: 18px;
+    height: 18px;
+}
+
+/* Game State Overlays */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.game-overlay.active {
+    display: flex;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(145deg, #2a2a3e, #1e1e32);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.overlay-content h2 {
+    color: #b4d984;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.overlay-content p {
+    color: #ccc;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Particle Effects */
+.water-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, #43c2b5 0%, #67d4c1 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: waterRise 1.2s ease-out forwards;
+    box-shadow: 0 0 10px rgba(67, 194, 181, 0.6);
+}
+
+@keyframes waterRise {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-60px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-120px) scale(0.3);
+    }
+}
+
+.debuff-particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #ff4444 0%, #ff6666 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: debuffEffect 1s ease-out forwards;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+}
+
+@keyframes debuffEffect {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translateY(-40px) scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.2);
+    }
+} 
