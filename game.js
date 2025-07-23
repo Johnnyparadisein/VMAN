@@ -1,6 +1,8 @@
-const canvas = document.getElementById('gameCanvas');
-const ctx = canvas.getContext('2d');
+// Screen Management
+let currentScreen = 'start-menu';
+let gameInitialized = false;
 
+// Game variables
 const gridSize = 30;
 let score = 0;
 let gameSpeed = 8; // frames between moves
@@ -8,7 +10,7 @@ let enemySpeed = 12; // enemies move slower than player
 let frameCount = 0;
 let powerPelletActive = false;
 let powerPelletTimer = 0;
-let gameState = 'playing'; // 'playing', 'gameOver', 'victory', 'paused'
+let gameState = 'menu'; // 'menu', 'playing', 'gameOver', 'victory', 'paused'
 let enemyTrails = []; // for fire effect
 
 // UI System Variables
@@ -17,7 +19,239 @@ let maxHealth = 3;
 let totalDroplets = 0;
 let dropletsCollected = 0;
 let audioEnabled = true;
-let gameInitialized = false;
+
+// Settings
+let gameSettings = {
+    audio: true,
+    controlScheme: 'buttons',
+    difficulty: 'normal'
+};
+
+// Canvas will be initialized when game starts
+let canvas = null;
+let ctx = null;
+
+// Screen Management Functions
+function showScreen(screenId) {
+    // Hide all screens
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+    
+    // Show target screen
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+        targetScreen.classList.add('active');
+        currentScreen = screenId;
+    }
+}
+
+function initializeApp() {
+    console.log('Setting up menu system...');
+    setupMenuEventListeners();
+    setupSettingsEventListeners();
+    
+    // Show start menu
+    showScreen('start-menu');
+}
+
+function setupMenuEventListeners() {
+    // Start Menu Buttons
+    const startGameBtn = document.getElementById('start-game-btn');
+    const settingsBtn = document.getElementById('settings-btn');
+    const instructionsBtn = document.getElementById('instructions-btn');
+    
+    // Instructions Screen
+    const backToMenu = document.getElementById('back-to-menu');
+    const backToMenu2 = document.getElementById('back-to-menu-2');
+    
+    // Pause Menu
+    const pauseMenuBtn = document.getElementById('pause-menu-btn');
+    const resumeBtn = document.getElementById('resume-btn');
+    const restartBtn = document.getElementById('restart-btn');
+    const mainMenuBtn = document.getElementById('main-menu-btn');
+    
+    if (startGameBtn) {
+        startGameBtn.addEventListener('click', startGame);
+        startGameBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            startGame();
+        });
+    }
+    
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => showScreen('settings-screen'));
+        settingsBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showScreen('settings-screen');
+        });
+    }
+    
+    if (instructionsBtn) {
+        instructionsBtn.addEventListener('click', () => showScreen('instructions-screen'));
+        instructionsBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showScreen('instructions-screen');
+        });
+    }
+    
+    if (backToMenu) {
+        backToMenu.addEventListener('click', () => showScreen('start-menu'));
+        backToMenu.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showScreen('start-menu');
+        });
+    }
+    
+    if (backToMenu2) {
+        backToMenu2.addEventListener('click', () => showScreen('start-menu'));
+        backToMenu2.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showScreen('start-menu');
+        });
+    }
+    
+    if (pauseMenuBtn) {
+        pauseMenuBtn.addEventListener('click', showPauseMenu);
+        pauseMenuBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showPauseMenu();
+        });
+    }
+    
+    if (resumeBtn) {
+        resumeBtn.addEventListener('click', resumeGame);
+        resumeBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            resumeGame();
+        });
+    }
+    
+    if (restartBtn) {
+        restartBtn.addEventListener('click', () => {
+            hidePauseMenu();
+            restartGame();
+        });
+        restartBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            hidePauseMenu();
+            restartGame();
+        });
+    }
+    
+    if (mainMenuBtn) {
+        mainMenuBtn.addEventListener('click', () => {
+            hidePauseMenu();
+            showScreen('start-menu');
+            gameState = 'menu';
+        });
+        mainMenuBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            hidePauseMenu();
+            showScreen('start-menu');
+            gameState = 'menu';
+        });
+    }
+}
+
+function setupSettingsEventListeners() {
+    const audioToggle = document.getElementById('audio-toggle');
+    const controlScheme = document.getElementById('control-scheme');
+    const difficulty = document.getElementById('difficulty');
+    
+    if (audioToggle) {
+        audioToggle.addEventListener('click', () => {
+            gameSettings.audio = !gameSettings.audio;
+            audioToggle.classList.toggle('active', gameSettings.audio);
+            audioEnabled = gameSettings.audio;
+            updateAudioButton();
+        });
+    }
+    
+    if (controlScheme) {
+        controlScheme.addEventListener('change', (e) => {
+            gameSettings.controlScheme = e.target.value;
+            // Could implement swipe controls here
+        });
+    }
+    
+    if (difficulty) {
+        difficulty.addEventListener('change', (e) => {
+            gameSettings.difficulty = e.target.value;
+            updateGameDifficulty();
+        });
+    }
+}
+
+function updateGameDifficulty() {
+    switch (gameSettings.difficulty) {
+        case 'easy':
+            gameSpeed = 12;
+            enemySpeed = 16;
+            break;
+        case 'normal':
+            gameSpeed = 8;
+            enemySpeed = 12;
+            break;
+        case 'hard':
+            gameSpeed = 6;
+            enemySpeed = 8;
+            break;
+    }
+}
+
+function startGame() {
+    console.log('Starting game...');
+    showScreen('game-screen');
+    
+    // Initialize canvas if not already done
+    if (!canvas) {
+        canvas = document.getElementById('gameCanvas');
+        ctx = canvas.getContext('2d');
+    }
+    
+    if (!gameInitialized) {
+        setup();
+    } else {
+        restartGame();
+    }
+    
+    gameState = 'playing';
+}
+
+function showPauseMenu() {
+    if (gameState === 'playing') {
+        gameState = 'paused';
+        const pauseMenu = document.getElementById('pause-menu');
+        if (pauseMenu) {
+            pauseMenu.classList.add('active');
+        }
+    }
+}
+
+function hidePauseMenu() {
+    const pauseMenu = document.getElementById('pause-menu');
+    if (pauseMenu) {
+        pauseMenu.classList.remove('active');
+    }
+}
+
+function resumeGame() {
+    hidePauseMenu();
+    gameState = 'playing';
+}
+
+function updateAudioButton() {
+    const audioBtn = document.getElementById('audio-btn');
+    if (audioBtn) {
+        const img = audioBtn.querySelector('img');
+        if (audioEnabled) {
+            img.style.opacity = '1';
+        } else {
+            img.style.opacity = '0.5';
+        }
+    }
+}
 
 // Game assets
 const playerImgs = {
@@ -219,9 +453,9 @@ function applyDebuff() {
 
 function togglePause() {
     if (gameState === 'playing') {
-        gameState = 'paused';
+        showPauseMenu();
     } else if (gameState === 'paused') {
-        gameState = 'playing';
+        resumeGame();
     }
 }
 
@@ -347,10 +581,8 @@ function setup() {
     addTouchControls(rightBtn, 1, 0);
     addTouchControls(downBtn, 0, 1);
     
-    // Add UI button listeners with touch support
-    const pauseBtn = document.getElementById('pause-btn');
+    // Add audio button listener
     const audioBtn = document.getElementById('audio-btn');
-    const backBtn = document.getElementById('back-btn');
     
     function addUIButtonListeners(btn, callback) {
         if (btn) {
@@ -362,15 +594,12 @@ function setup() {
         }
     }
     
-    addUIButtonListeners(pauseBtn, togglePause);
     addUIButtonListeners(audioBtn, toggleAudio);
-    addUIButtonListeners(backBtn, () => {
-        // Could implement menu navigation here
-        console.log('Back button clicked');
-    });
     
     gameInitialized = true;
     console.log('Starting game loop...');
+    
+    // Start the game loop
     gameLoop();
 }
 
@@ -970,27 +1199,58 @@ function update() {
 }
 
 function handleKeyPress(e) {
-    switch(e.key) {
-        case 'ArrowUp': movePlayer(0, -1); break;
-        case 'ArrowDown': movePlayer(0, 1); break;
-        case 'ArrowLeft': movePlayer(-1, 0); break;
-        case 'ArrowRight': movePlayer(1, 0); break;
-        case ' ': // Spacebar for pause
-        case 'p':
-        case 'P':
-            e.preventDefault();
-            togglePause();
-            break;
-        case 'm':
-        case 'M':
-            toggleAudio();
-            break;
-        case 'r':
-        case 'R':
-            if (gameState === 'gameOver' || gameState === 'victory') {
+    // Only handle game controls when actually playing
+    if (gameState === 'playing') {
+        switch(e.key) {
+            case 'ArrowUp': movePlayer(0, -1); break;
+            case 'ArrowDown': movePlayer(0, 1); break;
+            case 'ArrowLeft': movePlayer(-1, 0); break;
+            case 'ArrowRight': movePlayer(1, 0); break;
+            case ' ': // Spacebar for pause
+            case 'p':
+            case 'P':
+                e.preventDefault();
+                togglePause();
+                break;
+            case 'm':
+            case 'M':
+                toggleAudio();
+                break;
+        }
+    } else if (gameState === 'paused') {
+        switch(e.key) {
+            case ' ': // Spacebar for resume
+            case 'p':
+            case 'P':
+                e.preventDefault();
+                resumeGame();
+                break;
+            case 'Escape':
+                hidePauseMenu();
+                showScreen('start-menu');
+                gameState = 'menu';
+                break;
+        }
+    } else if (gameState === 'gameOver' || gameState === 'victory') {
+        switch(e.key) {
+            case 'r':
+            case 'R':
                 restartGame();
-            }
-            break;
+                break;
+            case 'Escape':
+                showScreen('start-menu');
+                gameState = 'menu';
+                break;
+        }
+    } else if (gameState === 'menu') {
+        switch(e.key) {
+            case 'Enter':
+                startGame();
+                break;
+            case 'Escape':
+                showScreen('start-menu');
+                break;
+        }
     }
 }
 
@@ -1004,7 +1264,9 @@ function restartGame() {
     playerAnimFrame = 0;
     playerHealth = maxHealth;
     dropletsCollected = 0;
-    gameSpeed = 8; // Reset game speed
+    
+    // Apply current difficulty settings
+    updateGameDifficulty();
     
     // Reset player
     player = { x: 1, y: 3, dx: 0, dy: 0 };
@@ -1068,17 +1330,19 @@ function movePlayer(dx, dy) {
 
 function gameLoop() {
     try {
-        update();
-        draw();
+        if (gameState === 'playing' || gameState === 'paused' || gameState === 'gameOver' || gameState === 'victory') {
+            update();
+            draw();
+        }
         requestAnimationFrame(gameLoop);
     } catch (error) {
         console.error('Error in game loop:', error);
     }
 }
 
-// Start the game immediately without waiting for assets
-console.log('Starting game...');
-setup();
+// Initialize the app
+console.log('Initializing V:MAN...');
+initializeApp();
 
 // Load assets in background
 originalPlayerImg.onload = () => console.log('Original player image loaded');

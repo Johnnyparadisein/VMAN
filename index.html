@@ -7,109 +7,274 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Game Container -->
-    <div class="game-container">
-        <!-- Top UI Section -->
-        <div class="top-section">
-            <!-- Top Left Controls -->
-            <div class="top-left-controls">
-                <button id="back-btn" class="control-button">
+    <!-- Start Menu Screen -->
+    <div id="start-menu" class="screen active">
+        <div class="menu-container">
+            <!-- Logo and Title -->
+            <div class="menu-header">
+                <div class="main-logo">
+                    <img src="assets/Logo.svg" alt="Vi Logo" class="main-vi-logo">
+                </div>
+                <h1 class="main-title">V:<span class="title-highlight">MAN</span></h1>
+                <p class="game-subtitle">ლიკანი წყლის კოლექციური თამაში</p>
+            </div>
+
+            <!-- Menu Buttons -->
+            <div class="menu-buttons">
+                <button id="start-game-btn" class="menu-btn primary">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">თამაშის დაწყება</span>
+                </button>
+                
+                <button id="settings-btn" class="menu-btn secondary">
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">პარამეტრები</span>
+                </button>
+                
+                <button id="instructions-btn" class="menu-btn secondary">
+                    <span class="btn-icon">📖</span>
+                    <span class="btn-text">ინსტრუქცია</span>
+                </button>
+            </div>
+
+            <!-- Game Preview -->
+            <div class="game-preview">
+                <div class="preview-character">
+                    <img src="assets/Veli_asset_MAN_closed.svg" alt="V:MAN Character" class="preview-vman">
+                </div>
+                <div class="preview-enemies">
+                    <img src="assets/enemy sun.svg" alt="Enemy" class="preview-enemy">
+                    <img src="assets/droplet.svg" alt="Droplet" class="preview-droplet">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Screen -->
+    <div id="instructions-screen" class="screen">
+        <div class="instructions-container">
+            <div class="instructions-header">
+                <button id="back-to-menu" class="back-btn">
                     <img src="assets/back button.svg" alt="Back">
                 </button>
-                <button id="pause-btn" class="control-button">
-                    <img src="assets/Pause.svg" alt="Pause">
-                </button>
-                <button id="audio-btn" class="control-button">
-                    <img src="assets/Audio off.svg" alt="Audio">
-                </button>
+                <h2>როგორ ვითამაშოთ</h2>
             </div>
             
-            <!-- Top Center Title -->
-            <div class="top-center-title">
-                <h1 class="game-title">V:<span class="title-man">MAN</span></h1>
+            <div class="instructions-content">
+                <div class="instruction-item">
+                    <div class="instruction-icon">
+                        <img src="assets/Veli_asset_MAN_closed.svg" alt="Character">
+                    </div>
+                    <div class="instruction-text">
+                        <h3>V:MAN-ის მართვა</h3>
+                        <p>გამოიყენეთ ისრისებრი ღილაკები მოძრაობისთვის</p>
+                    </div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-icon">
+                        <img src="assets/droplet.svg" alt="Droplet">
+                    </div>
+                    <div class="instruction-text">
+                        <h3>წყლის შეგროვება</h3>
+                        <p>შეაგროვეთ ყველა ლურჯი წვეთი ლიკანის ბოთლში</p>
+                    </div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-icon">
+                        <img src="assets/enemy sun.svg" alt="Enemy">
+                    </div>
+                    <div class="instruction-text">
+                        <h3>მტრებისგან თავის არიდება</h3>
+                        <p>ნაცრისფერი მზეები შეშლიან - ნუ შეეხებით!</p>
+                    </div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-icon">
+                        <img src="assets/full heart.svg" alt="Heart">
+                    </div>
+                    <div class="instruction-text">
+                        <h3>სიცოცხლე</h3>
+                        <p>გაქვთ 3 გული - ყურადღება იყავით!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="settings-container">
+            <div class="settings-header">
+                <button id="back-to-menu-2" class="back-btn">
+                    <img src="assets/back button.svg" alt="Back">
+                </button>
+                <h2>პარამეტრები</h2>
             </div>
             
-            <!-- Top Right Logo -->
-            <div class="top-right-logo">
-                <img src="assets/Logo.svg" alt="Vi Logo" class="vi-logo">
-            </div>
-        </div>
-
-        <!-- Main Game Content -->
-        <div class="main-content">
-            <!-- Top UI Panels -->
-            <div class="top-ui-panels">
-                <!-- Left Side UI -->
-                <div class="left-side-ui">
-                    <!-- Likani Bottle -->
-                    <div class="bottle-container">
-                        <div class="bottle-wrapper">
-                            <img src="assets/likani bottle.svg" alt="Likani Bottle" class="bottle-base">
-                            <div class="bottle-water" id="bottle-water"></div>
-                        </div>
-                        <div class="bottle-progress">
-                            <span id="water-percentage">0%</span>
-                        </div>
-                        <div class="bottle-label">ლიკანი</div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span class="setting-icon">🔊</span>
+                        <span>ხმა</span>
                     </div>
+                    <button id="audio-toggle" class="toggle-btn active">
+                        <div class="toggle-slider"></div>
+                    </button>
                 </div>
 
-                <!-- Right Side UI -->
-                <div class="right-side-ui">
-                    <!-- Health Display -->
-                    <div class="health-container">
-                        <div class="health-label">ნაკლები</div>
-                        <div class="health-display">
-                            <div class="heart" id="heart1">
-                                <img src="assets/full heart.svg" alt="Heart 1">
-                            </div>
-                            <div class="heart" id="heart2">
-                                <img src="assets/full heart.svg" alt="Heart 2">
-                            </div>
-                            <div class="heart" id="heart3">
-                                <img src="assets/full heart.svg" alt="Heart 3">
-                            </div>
-                        </div>
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span class="setting-icon">🎮</span>
+                        <span>კონტროლი</span>
                     </div>
-
-                    <!-- Score Display -->
-                    <div class="score-container">
-                        <div class="score-icon">
-                            <img src="assets/debuff.svg" alt="Score Icon">
-                        </div>
-                        <div class="score-label">ბიზნეს ბიზნე</div>
-                    </div>
+                    <select id="control-scheme" class="setting-select">
+                        <option value="buttons">ღილაკები</option>
+                        <option value="swipe">ჟესტები</option>
+                    </select>
                 </div>
-            </div>
 
-            <!-- Game Area -->
-            <div class="game-area">
-                <canvas id="gameCanvas"></canvas>
-            </div>
-        </div>
-
-        <!-- Bottom Status Bar -->
-        <div class="bottom-status">
-            <div class="status-left">
-                <span class="status-label">ქართული:</span>
-                <span class="status-value" id="score-value">324</span>
-            </div>
-            <div class="status-right">
-                <span class="status-label">სიცოცხლე:</span>
-                <div class="status-hearts">
-                    <img src="assets/full heart.svg" alt="Heart" class="status-heart">
-                    <img src="assets/full heart.svg" alt="Heart" class="status-heart">
-                    <img src="assets/empty heart.svg" alt="Heart" class="status-heart">
+                <div class="setting-item">
+                    <div class="setting-label">
+                        <span class="setting-icon">⚡</span>
+                        <span>სირთულე</span>
+                    </div>
+                    <select id="difficulty" class="setting-select">
+                        <option value="easy">მარტივი</option>
+                        <option value="normal" selected>ნორმალური</option>
+                        <option value="hard">რთული</option>
+                    </select>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Mobile Controls -->
-        <div id="mobile-controls">
-            <button id="up">↑</button>
-            <button id="left">←</button>
-            <button id="right">→</button>
-            <button id="down">↓</button>
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <!-- Game Container -->
+        <div class="game-container">
+            <!-- Top UI Section -->
+            <div class="top-section">
+                <!-- Top Left Controls -->
+                <div class="top-left-controls">
+                    <button id="pause-menu-btn" class="control-button">
+                        <img src="assets/Pause.svg" alt="Menu">
+                    </button>
+                    <button id="audio-btn" class="control-button">
+                        <img src="assets/Audio off.svg" alt="Audio">
+                    </button>
+                </div>
+                
+                <!-- Top Center Title -->
+                <div class="top-center-title">
+                    <h1 class="game-title">V:<span class="title-man">MAN</span></h1>
+                </div>
+                
+                <!-- Top Right Logo -->
+                <div class="top-right-logo">
+                    <img src="assets/Logo.svg" alt="Vi Logo" class="vi-logo">
+                </div>
+            </div>
+
+            <!-- Main Game Content -->
+            <div class="main-content">
+                <!-- Top UI Panels -->
+                <div class="top-ui-panels">
+                    <!-- Left Side UI -->
+                    <div class="left-side-ui">
+                        <!-- Likani Bottle -->
+                        <div class="bottle-container">
+                            <div class="bottle-wrapper">
+                                <img src="assets/likani bottle.svg" alt="Likani Bottle" class="bottle-base">
+                                <div class="bottle-water" id="bottle-water"></div>
+                            </div>
+                            <div class="bottle-progress">
+                                <span id="water-percentage">0%</span>
+                            </div>
+                            <div class="bottle-label">ლიკანი</div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side UI -->
+                    <div class="right-side-ui">
+                        <!-- Health Display -->
+                        <div class="health-container">
+                            <div class="health-label">ნაკლები</div>
+                            <div class="health-display">
+                                <div class="heart" id="heart1">
+                                    <img src="assets/full heart.svg" alt="Heart 1">
+                                </div>
+                                <div class="heart" id="heart2">
+                                    <img src="assets/full heart.svg" alt="Heart 2">
+                                </div>
+                                <div class="heart" id="heart3">
+                                    <img src="assets/full heart.svg" alt="Heart 3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Score Display -->
+                        <div class="score-container">
+                            <div class="score-icon">
+                                <img src="assets/debuff.svg" alt="Score Icon">
+                            </div>
+                            <div class="score-label">ბიზნეს ბიზნე</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Area -->
+                <div class="game-area">
+                    <canvas id="gameCanvas"></canvas>
+                </div>
+            </div>
+
+            <!-- Bottom Status Bar -->
+            <div class="bottom-status">
+                <div class="status-left">
+                    <span class="status-label">ქართული:</span>
+                    <span class="status-value" id="score-value">0</span>
+                </div>
+                <div class="status-right">
+                    <span class="status-label">სიცოცხლე:</span>
+                    <div class="status-hearts">
+                        <img src="assets/full heart.svg" alt="Heart" class="status-heart">
+                        <img src="assets/full heart.svg" alt="Heart" class="status-heart">
+                        <img src="assets/empty heart.svg" alt="Heart" class="status-heart">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Controls -->
+            <div id="mobile-controls">
+                <button id="up">↑</button>
+                <button id="left">←</button>
+                <button id="right">→</button>
+                <button id="down">↓</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pause Menu Overlay -->
+    <div id="pause-menu" class="overlay-menu">
+        <div class="pause-container">
+            <h2>პაუზა</h2>
+            <div class="pause-buttons">
+                <button id="resume-btn" class="pause-btn primary">
+                    <span class="btn-icon">▶️</span>
+                    <span class="btn-text">გაგრძელება</span>
+                </button>
+                <button id="restart-btn" class="pause-btn secondary">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">ხელახალი დაწყება</span>
+                </button>
+                <button id="main-menu-btn" class="pause-btn secondary">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">მთავარი მენიუ</span>
+                </button>
+            </div>
         </div>
     </div>
 
